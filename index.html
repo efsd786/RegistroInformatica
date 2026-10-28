@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuarios</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #fff0f5;
+      color: #4a3e3d;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .container {
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(230, 100, 150, 0.15);
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
+    }
+    h2 {
+      color: #d81b60;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #880e4f;
+    }
+    input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #f8bbd0;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    input:focus {
+      border-color: #ec407a;
+    }
+    button {
+      width: 100%;
+      background-color: #ec407a;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #d81b60;
+    }
+    .table-container {
+      margin-top: 30px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #f8bbd0;
+      font-size: 14px;
+    }
+    th {
+      background-color: #fce4ec;
+      color: #880e4f;
+    }
+    tr:nth-child(even) {
+      background-color: #fff8fa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Registro de Usuarios</h2>
+    
+    <form id="registroForm">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" required placeholder="Ej. Ana García">
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="Ej. ana@correo.com">
+      </div>
+      
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" required placeholder="Ej. 123456789">
+      </div>
+      
+      <button type="submit">Registrar</button>
+    </form>
+
+    <div class="table-container">
+      <h2>Lista de Registrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody id="tablaCuerpo">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registroForm');
+    const tabla = document.getElementById('tablaCuerpo');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const telefono = document.getElementById('telefono').value;
+
+      const nuevaFila = document.createElement('tr');
+      nuevaFila.innerHTML = `
+        <td>${nombre}</td>
+        <td>${email}</td>
+        <td>${telefono}</td>
+      `;
+
+      tabla.appendChild(nuevaFila);
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
